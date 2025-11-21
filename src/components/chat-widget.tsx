@@ -1,0 +1,133 @@
+"use client"
+
+import { useState, useRef, useEffect } from "react"
+import { MessageCircle, X, Send, Bot } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { getChatResponse } from "@/lib/chat-logic"
+
+type Message = {
+    role: "user" | "bot"
+    content: string
+}
+
+export function ChatWidget() {
+    const [isOpen, setIsOpen] = useState(false)
+    const [messages, setMessages] = useState<Message[]>([
+        { role: "bot", content: "Hi! I'm Sumesh's AI assistant. Ask me anything about his skills, projects, or experience." }
+    ])
+    const [input, setInput] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+    const messagesEndRef = useRef<HTMLDivElement>(null)
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+
+    useEffect(() => {
+        scrollToBottom()
+    }, [messages, isOpen])
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault()
+        if (!input.trim()) return
+
+        const userMessage = input
+        setInput("")
+        setMessages(prev => [...prev, { role: "user", content: userMessage }])
+        setIsLoading(true)
+
+        try {
+            const response = await getChatResponse(userMessage)
+            setMessages(prev => [...prev, { role: "bot", content: response }])
+        } catch {
+            setMessages(prev => [...prev, { role: "bot", content: "Sorry, I encountered an error. Please try again." }])
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    return (
+        <div className="fixed bottom-4 right-4 z-50">
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                        className="mb-4 w-[350px] sm:w-[400px]"
+                    >
+                        <Card className="shadow-xl border-primary/20">
+                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-primary text-primary-foreground rounded-t-xl">
+                                <CardTitle className="text-sm font-medium flex items-center gap-2">
+                                    <Bot className="h-4 w-4" />
+                                    AI Assistant
+                                </CardTitle>
+                                <Button variant="ghost" size="icon" className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20" onClick={() => setIsOpen(false)}>
+                                    <X className="h-4 w-4" />
+                                </Button>
+                            </CardHeader>
+                            <CardContent className="p-4 h-[400px] overflow-y-auto space-y-4">
+                                {messages.map((msg, index) => (
+                                    <div
+                                        key={index}
+                                        className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                                    >
+                                        <div
+                                            className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${msg.role === "user"
+                                                ? "bg-primary text-primary-foreground"
+                                                : "bg-muted"
+                                                }`}
+                                        >
+                                            {msg.content}
+                                        </div>
+                                    </div>
+                                ))}
+                                {isLoading && (
+                                    <div className="flex justify-start">
+                                        <div className="bg-muted rounded-lg px-3 py-2 text-sm">
+                                            Thinking...
+                                        </div>
+                                    </div>
+                                )}
+                                <div ref={messagesEndRef} />
+                            </CardContent>
+                            <CardFooter className="p-3 pt-0">
+                                <form onSubmit={handleSubmit} className="flex w-full gap-2">
+                                    <Input
+                                        placeholder="Ask about Sumesh..."
+                                        value={input}
+                                        onChange={(e) => setInput(e.target.value)}
+                                        className="flex-1"
+                                    />
+                                    <Button type="submit" size="icon" disabled={isLoading}>
+                                        <Send className="h-4 w-4" />
+                                    </Button>
+                                </form>
+                            </CardFooter>
+                        </Card>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {!isOpen && (
+                <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                >
+                    <Button
+                        size="lg"
+                        className="h-14 w-14 rounded-full shadow-lg"
+                        onClick={() => setIsOpen(true)}
+                    >
+                        <MessageCircle className="h-6 w-6" />
+                    </Button>
+                </motion.div>
+            )}
+        </div>
+    )
+}
