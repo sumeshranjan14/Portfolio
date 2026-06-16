@@ -5,10 +5,12 @@ export async function getChatResponse(query: string): Promise<string> {
 
     if (lowerQuery.includes("skills") || lowerQuery.includes("stack") || lowerQuery.includes("technology")) {
         const allSkills = [
-            ...resumeData.skills.programming,
-            ...resumeData.skills.webStack,
-            ...resumeData.skills.coreCS,
-            ...resumeData.skills.professional
+            ...resumeData.skills.languages,
+            ...resumeData.skills.backendFrameworks,
+            ...resumeData.skills.frontendWeb,
+            ...resumeData.skills.databases,
+            ...resumeData.skills.csFundamentals,
+            ...resumeData.skills.tools
         ].join(", ")
         return `Sumesh is skilled in: ${allSkills}.`
     }
@@ -27,7 +29,8 @@ export async function getChatResponse(query: string): Promise<string> {
     }
 
     if (lowerQuery.includes("experience") || lowerQuery.includes("leadership")) {
-        return `Sumesh is the Chair of IEEE SB Tula’s Institute and has been a member of the Vibgyor Student Council.`
+        const roles = resumeData.leadership.map(l => `${l.role} of ${l.organization}`).join(", ")
+        return `Sumesh has held leadership and student roles including: ${roles}.`
     }
 
     if (lowerQuery.includes("summary") || lowerQuery.includes("about") || lowerQuery.includes("who is")) {

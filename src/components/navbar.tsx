@@ -21,38 +21,36 @@ export function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b border-primary/10 bg-background/75 backdrop-blur-md">
             <div className="container flex h-16 items-center justify-between px-4 md:px-8">
-                <div className="mr-4 hidden md:flex">
-                    <Link href="/" className="mr-6 flex items-center space-x-2">
-                        <span className="hidden font-bold sm:inline-block text-xl">
+                <div className="mr-4 flex items-center gap-8">
+                    <Link href="/" className="flex items-center space-x-2">
+                        <span className="font-serif font-bold text-2xl text-royal-gradient tracking-wide">
                             Sumesh Ranjan
                         </span>
                     </Link>
-                    <nav className="flex items-center gap-6 text-sm font-medium">
+                    <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
                         {navItems.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "transition-colors hover:text-foreground/80 text-foreground/60"
+                                    "transition-all duration-300 hover:text-primary text-foreground/70 relative py-1 group"
                                 )}
                             >
                                 {item.name}
+                                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
                             </Link>
                         ))}
                     </nav>
                 </div>
-                <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                    <div className="flex items-center md:hidden">
-                        <span className="font-bold text-lg">Sumesh Ranjan</span>
-                    </div>
+                <div className="flex flex-1 items-center justify-between space-x-4 md:justify-end">
                     <div className="w-full flex-1 md:w-auto md:flex-none">
                     </div>
                     <ModeToggle />
                     <Button
                         variant="ghost"
-                        className="md:hidden"
+                        className="md:hidden hover:bg-primary/10 hover:text-primary"
                         size="icon"
                         onClick={() => setIsOpen(!isOpen)}
                     >
@@ -67,14 +65,14 @@ export function Navbar() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="container md:hidden pb-4 px-4"
+                    className="container md:hidden pb-6 px-4 bg-background/95 border-b border-primary/10"
                 >
                     <nav className="flex flex-col space-y-4 mt-2">
                         {navItems.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="text-sm font-medium transition-colors hover:text-primary"
+                                className="text-sm font-semibold transition-all hover:text-primary hover:pl-2 text-foreground/80"
                                 onClick={() => setIsOpen(false)}
                             >
                                 {item.name}
@@ -86,3 +84,4 @@ export function Navbar() {
         </header>
     )
 }
+

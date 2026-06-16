@@ -5,10 +5,12 @@ import { Projects } from "@/components/projects"
 import { Experience } from "@/components/experience"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
+import { BackgroundArt } from "@/components/background-art"
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="relative flex flex-col min-h-screen">
+      <BackgroundArt />
       <Hero />
       <About />
       <Skills />
@@ -19,3 +21,4 @@ export default function Home() {
     </div>
   )
 }
+
