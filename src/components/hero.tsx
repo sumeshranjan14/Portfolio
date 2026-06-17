@@ -24,9 +24,6 @@ export function Hero() {
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs sm:text-sm font-semibold tracking-wider uppercase font-serif">
                         ✦ Software Engineer Portfolio ✦
                     </div>
-                    <h1 className="text-5xl font-serif tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-[1.15]">
-                        Hi, I&apos;m <span className="text-royal-gradient block mt-2 sm:inline sm:mt-0 font-bold">{resumeData.name}</span>
-                    </h1>
 
                     {/* Centered Profile Picture with Royal Illuminating Border */}
                     <div className="relative mx-auto my-8 h-48 w-48 md:h-56 md:w-56 rounded-full p-1 bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-700 shadow-[0_0_35px_rgba(245,158,11,0.45)] dark:shadow-[0_0_50px_rgba(251,191,36,0.35)] flex items-center justify-center">
@@ -41,6 +38,10 @@ export function Hero() {
                             />
                         </div>
                     </div>
+
+                    <h1 className="text-5xl font-serif tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-[1.15]">
+                        Hi, I&apos;m <span className="text-royal-gradient block mt-2 sm:inline sm:mt-0 font-bold">{resumeData.name}</span>
+                    </h1>
 
                     <p className="mx-auto max-w-2xl text-base sm:text-lg md:text-xl text-muted-foreground font-medium leading-relaxed">
                         A passionate <span className="text-foreground font-semibold">Software Engineer</span> specializing in <span className="text-primary font-semibold">Java</span>, <span className="text-primary font-semibold">Spring Boot</span>, and the <span className="text-primary font-semibold">MERN Stack</span>.
