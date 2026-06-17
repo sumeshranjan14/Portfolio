@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { MessageCircle, X, Send, Bot } from "lucide-react"
+import { X, Send } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
@@ -63,7 +63,9 @@ export function ChatWidget() {
                         <Card className="glass-card border border-primary/20 gold-glow shadow-2xl rounded-2xl overflow-hidden">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 pt-4 px-4 bg-gradient-to-r from-primary to-amber-600 text-primary-foreground">
                                 <CardTitle className="text-sm font-serif font-bold tracking-wider flex items-center gap-2">
-                                    <Bot className="h-4 w-4 animate-bounce" />
+                                    <div className="relative h-6 w-6 rounded-full overflow-hidden border border-primary-foreground/30 shadow-inner shrink-0">
+                                        <img src="/cool-guy-avatar.png" alt="Cool Guy Bot" className="object-cover h-full w-full" />
+                                    </div>
                                     SUMESH&apos;S AI COMPANION
                                 </CardTitle>
                                 <Button variant="ghost" size="icon" className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20 rounded-full" onClick={() => setIsOpen(false)}>
@@ -122,10 +124,10 @@ export function ChatWidget() {
                 >
                     <Button
                         size="lg"
-                        className="h-14 w-14 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/95 transition-all duration-300 shadow-primary/20 gold-glow border border-primary/25"
+                        className="h-14 w-14 rounded-full p-0 overflow-hidden shadow-lg hover:scale-105 transition-all duration-300 shadow-primary/20 gold-glow border-2 border-primary"
                         onClick={() => setIsOpen(true)}
                     >
-                        <MessageCircle className="h-6 w-6" />
+                        <img src="/cool-guy-avatar.png" alt="AI Bot" className="h-full w-full object-cover" />
                     </Button>
                 </motion.div>
             )}

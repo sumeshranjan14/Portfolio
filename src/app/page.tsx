@@ -10,7 +10,7 @@ import { SolarSystem } from "@/components/solar-system"
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col min-h-screen">
+    <div className="relative flex flex-col min-h-screen isolate">
       <BackgroundArt />
       <SolarSystem />
       <Hero />

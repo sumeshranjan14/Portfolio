@@ -46,7 +46,7 @@ export function SolarSystem() {
     const saturnRot = useTransform(baseRotation, r => r * 0.4)
 
     return (
-        <div className="fixed top-1/2 -right-52 md:-right-40 -translate-y-1/2 w-[500px] h-[500px] md:w-[650px] md:h-[650px] pointer-events-none overflow-visible -z-20 select-none opacity-[0.04] dark:opacity-[0.025] text-primary transition-opacity duration-300">
+        <div className="fixed top-1/2 -right-52 md:-right-40 -translate-y-1/2 w-[500px] h-[500px] md:w-[650px] md:h-[650px] pointer-events-none overflow-visible -z-10 select-none opacity-[0.22] dark:opacity-[0.12] text-primary transition-opacity duration-300">
             <svg 
                 viewBox="0 0 400 400" 
                 fill="none" 
