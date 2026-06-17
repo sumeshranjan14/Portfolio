@@ -28,6 +28,12 @@ export const resumeData = {
             description: "Engineered a barcode-scan-based checkout system enabling customers to manage carts in real-time and complete digital payments — eliminating billing queue wait times for retail stores. Built a store-owner dashboard featuring inventory management, live transaction monitoring, and operational analytics — reducing manual reconciliation effort. Deployed full-stack application on Vercel (frontend), Firebase authentication and real-time database sync.",
             link: "https://github.com/sumeshranjan14/snapcart.git",
         },
+        {
+            title: "Personal Portfolio Website",
+            tech: "React.js, JavaScript, HTML, CSS, Vercel",
+            description: "Designed and developed a fully responsive personal portfolio website to showcase projects, technical skills, certifications, and achievements. Built an interactive user interface with modern web technologies, ensuring seamless performance across desktop, tablet, and mobile devices. Integrated project showcases, resume access, contact section, and social media links to improve professional visibility and networking opportunities. Optimized website performance, navigation, and user experience for faster loading times and enhanced accessibility. Deployed and maintained the portfolio on Vercel with continuous updates for projects, certifications, and technical accomplishments. Implemented clean component-based architecture and responsive design principles to ensure scalability and maintainability.",
+            link: "https://github.com/sumeshranjan14/Portfolio.git",
+        },
     ],
     education: [
         {
