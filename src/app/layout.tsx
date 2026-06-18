@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { ChatWidget } from "@/components/chat-widget";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,6 +43,7 @@ export default function RootLayout({
             {children}
           </main>
           <ChatWidget />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
